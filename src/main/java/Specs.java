@@ -1,23 +1,17 @@
 import io.restassured.http.ContentType;
-import io.restassured.response.Response;
 import io.restassured.specification.RequestSpecification;
-
-import static io.restassured.RestAssured.*;
+import java.util.Map;
+import static io.restassured.RestAssured.given;
 
 public class Specs {
 
-
-    public static RequestSpecification requestSpecification() {
+    public static RequestSpecification requestSpecification(Map<String, String> pathParams) {
         RequestSpecification requestSpec = given()
-                .baseUri("https://cloud-api.yandex.net:443")
-                .header("Authorization", "AgAAAAA-mge6AADLWxsH7ocSbEhOhmdCz4x6WwY")
-                .contentType(ContentType.JSON)
+                .baseUri(EndPoints.baseUri)
+                .header("Authorization", EndPoints.token)
+                .contentType(ContentType.JSON).params(pathParams)
                 .when().log().all();
         return requestSpec;
     }
 
-    public static Response url(RequestSpecification s, String params) {
-        Response response = get(params);
-        return response;
-    }
 }

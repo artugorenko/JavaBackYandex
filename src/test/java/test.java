@@ -13,24 +13,48 @@ public class test {
 
         String nameFolderRandom = "newfolder " + Functional.randomString();
 
-        Methods.getFolders("/")
+        Methods.params.clear();
+        Methods.params.put("path", "/");
+        Methods.getFolders(Methods.params)
                 .statusCode(200)
                 .body("_embedded.items.name", everyItem(not(equalTo(nameFolderRandom))));
 
-        Methods.putFolders("/" + nameFolderRandom)
+        Methods.params.clear();
+        Methods.params.put("path", "/" + nameFolderRandom);
+        Methods.putFolders(Methods.params)
                 .statusCode(201);
 
-        Methods.getFolders("/")
+        Methods.params.clear();
+        Methods.params.put("path", "/");
+        Methods.getFolders(Methods.params)
                 .statusCode(200)
                 .body("_embedded.items.name", hasItem(equalTo(nameFolderRandom)));
 
-        Methods.deleteFolders("/" + nameFolderRandom)
+        Methods.params.clear();
+        Methods.params.put("path", "/" + nameFolderRandom);
+        Methods.deleteFolders(Methods.params)
                 .statusCode(204);
 
-        Methods.getFolders("/")
+        Methods.params.clear();
+        Methods.params.put("path", "/");
+        Methods.getFolders(Methods.params)
                 .statusCode(200)
                 .body("_embedded.items.name", everyItem(not(equalTo(nameFolderRandom))));
 
+
+/*
+                 given()
+                .baseUri("https://cloud-api.yandex.net:443")
+                .header("Authorization", "AgAAAAA-mge6AADLWxsH7ocSbEhOhmdCz4x6WwY")
+                .contentType(ContentType.JSON)
+                .param("path", pathParam)
+                .when().log().all()
+                .get(EndPoints.FileAndFolder)
+                .then()
+                .assertThat()
+                .statusCode(200)
+                .body("_embedded.items.name", everyItem(not(equalTo(nameFolderRandom))));
+ */
     }
 
 }
