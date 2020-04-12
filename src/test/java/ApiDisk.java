@@ -1,16 +1,11 @@
 import diskAPI.*;
 import diskAPI.endPoints.EndPointsApi;
 import diskAPI.utils.Utils;
-import io.qameta.allure.Feature;
 import org.junit.jupiter.api.*;
 import java.util.*;
 import static org.hamcrest.CoreMatchers.*;
-
-import static org.hamcrest.Matchers.hasSize;
 import static org.hamcrest.core.IsEqual.equalTo;
-import static org.junit.jupiter.api.Assertions.assertTrue;
 
-@Feature("asd")
 public class ApiDisk {
 
     public static String nameRandom = "";
@@ -26,7 +21,7 @@ public class ApiDisk {
     @Test
     @DisplayName("Тест номер 1")
     void firstTest() throws InterruptedException {
-    assertTrue(false);
+
         //Создаем папку
         Methods.putFolders(nameRandom, Map.of())
                 .statusCode(201);
