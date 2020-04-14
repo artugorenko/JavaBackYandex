@@ -9,9 +9,9 @@ public class GeneralMethods {
 
     public static ValidatableResponse allMethod(String method, String endPoint, Map<String, String> pathParams) {
         ValidatableResponse response =
-                Specs.requestSpecification().queryParams(pathParams)
+                Specs.requestSpecification().queryParams(pathParams).log().all()
                         .request(method, endPoint)
-                        .then()
+                        .then().log().all()
                         .assertThat();
         return response;
     }
