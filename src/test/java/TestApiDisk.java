@@ -1,12 +1,13 @@
 import diskAPI.*;
 import diskAPI.endPoints.EndPointsApi;
 import diskAPI.utils.Utils;
+
 import org.junit.jupiter.api.*;
 import java.util.*;
 import static org.hamcrest.CoreMatchers.*;
 import static org.hamcrest.core.IsEqual.equalTo;
 
-public class ApiDisk {
+public class TestApiDisk {
 
     public static String nameRandom = "";
 
